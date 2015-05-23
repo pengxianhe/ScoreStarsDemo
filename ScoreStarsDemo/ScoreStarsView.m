@@ -11,7 +11,6 @@
 
 @implementation ScoreStarsView
 
-
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
@@ -20,5 +19,13 @@
     [ScoreStarsKit drawScoreStarsCanvasWithFrame:rect frontColor:self.frontColor fillColor:self.fillColor backColor:self.backColor value:self.value];
 }
 
-
+- (void)setValue:(CGFloat)value {
+    if (value > 1.0) {
+        value = 1.0;
+    } else if (value < 0) {
+        value = 0;
+    }
+    _value = value;
+    [self setNeedsDisplay];
+}
 @end
